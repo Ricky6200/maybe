@@ -62,20 +62,29 @@ void Draw()
     }
     glEnd();
 
-    glColor3f(0.6, 0.6, 0.3);
-    glRecti(90, 460, 100, 50);
+    glColor3f(0, 0, 1);
+    glRecti(90, 450, 100, 50);
 
     glFlush();
 }
 
 void Menu(int n)
 {
-    if (n == 1)
+    if (n == 1){
         xw=1;
-    else if (n == 2)
+        y=0;z=0;
+        }
+    else if (n == 2){
+    	xw=0;
         y=1;
-    else if (n == 3)
+        z=0;
+        }
+    else if (n == 3){
+    	xw=0;y=0;
         z=1;
+        }
+    else if(n==4)
+    	exit(0);
 
     glutPostRedisplay();
 }
@@ -97,9 +106,10 @@ int main(int argC, char *argV[])
     glutCreateWindow("Animate Flag");
     MyInit();
     glutCreateMenu(Menu);
-    glutAddMenuEntry("Start", 1);
-    glutAddMenuEntry("Stop", 2);
-    glutAddMenuEntry("Exit", 3);
+    glutAddMenuEntry("Red", 1);
+    glutAddMenuEntry("Green", 2);
+    glutAddMenuEntry("Blue", 3);
+    glutAddMenuEntry("Exit",4);
     glutAttachMenu(GLUT_RIGHT_BUTTON);
     glutDisplayFunc(Draw);
     glutIdleFunc(Animate);
